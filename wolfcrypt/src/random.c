@@ -1628,7 +1628,14 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
      * Return 0 to indicate success
      * int rand_gen_seed(byte* output, word32 sz);
      * #define CUSTOM_RAND_GENERATE_SEED  rand_gen_seed */
-
+    #if defined(KEYSTONE)
+	#include "syscall_keystone.h"
+        int rand_gen_seed_keystone(byte *output, word32 sz);
+    	int rand_gen_seed_keystone(byte *output, word32 sz)
+    	{
+		return SYSCALL_2(SYSCALL_GENRAND, output, sz);
+    	}
+    #endif
     int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
     {
         (void)os; /* Suppress unused arg warning */
