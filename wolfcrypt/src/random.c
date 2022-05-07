@@ -52,7 +52,7 @@ This library contains implementation for the random number generator.
 
 #include <wolfssl/wolfcrypt/random.h>
 #include <wolfssl/wolfcrypt/cpuid.h>
-
+#include <stdio.h>
 
 /* If building for old FIPS. */
 #if defined(HAVE_FIPS) && \
@@ -858,6 +858,7 @@ static int _InitRng(WC_RNG* rng, byte* nonce, word32 nonceSz,
             }
 #else
             ret = wc_GenerateSeed(&rng->seed, seed, seedSz);
+	    printf("Return value from GenerateSeed %d\n", ret);
 #endif
             if (ret == 0)
                 ret = wc_RNG_TestSeed(seed, seedSz);
