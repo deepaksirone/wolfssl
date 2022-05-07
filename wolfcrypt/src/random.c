@@ -764,6 +764,7 @@ int wc_RNG_TestSeed(const byte* seed, word32 seedSz)
 static int _InitRng(WC_RNG* rng, byte* nonce, word32 nonceSz,
                     void* heap, int devId)
 {
+    printf("Entered _InitRng\n");
     int ret = 0;
 #ifdef HAVE_HASHDRBG
     word32 seedSz = SEED_SZ + SEED_BLOCK_SZ;
@@ -857,6 +858,7 @@ static int _InitRng(WC_RNG* rng, byte* nonce, word32 nonceSz,
                 }
             }
 #else
+	    printf("Before wc_GenerateSeed\n");
             ret = wc_GenerateSeed(&rng->seed, seed, seedSz);
 	    printf("Return value from GenerateSeed %d\n", ret);
 #endif
