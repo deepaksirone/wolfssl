@@ -764,7 +764,7 @@ int wc_RNG_TestSeed(const byte* seed, word32 seedSz)
 static int _InitRng(WC_RNG* rng, byte* nonce, word32 nonceSz,
                     void* heap, int devId)
 {
-    printf("Entered _InitRng\n");
+    //printf("Entered _InitRng\n");
     int ret = 0;
 #ifdef HAVE_HASHDRBG
     word32 seedSz = SEED_SZ + SEED_BLOCK_SZ;
@@ -858,9 +858,9 @@ static int _InitRng(WC_RNG* rng, byte* nonce, word32 nonceSz,
                 }
             }
 #else
-	    printf("Before wc_GenerateSeed\n");
+	    //printf("Before wc_GenerateSeed\n");
             ret = wc_GenerateSeed(&rng->seed, seed, seedSz);
-	    printf("Return value from GenerateSeed %d\n", ret);
+	    //printf("Return value from GenerateSeed %d\n", ret);
 #endif
             if (ret == 0)
                 ret = wc_RNG_TestSeed(seed, seedSz);
@@ -1666,12 +1666,12 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
 	#if defined(KEYSTONE)
         #include "syscall_keystone.h"
 	
-        int rand_gen_keystone(void);
-        int rand_gen_keystone(void)
+        uintptr_t rand_gen_keystone(void);
+        uintptr_t rand_gen_keystone(void)
         {
-		printf("Call to GENRAND_WORD\n");
-                int ret = SYSCALL_0(SYSCALL_GENRAND_WORD);
-		printf("GENRAND_WORD returned: %d\n", ret);
+		//printf("Call to GENRAND_WORD\n");
+                uintptr_t ret = SYSCALL_0(SYSCALL_GENRAND_WORD);
+		//printf("GENRAND_WORD returned: %d\n", ret);
 		return ret;
         }
 	#endif
