@@ -1620,7 +1620,6 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
 #endif /* HAVE_INTEL_RDRAND */
 #endif /* HAVE_INTEL_RDRAND || HAVE_INTEL_RDSEED || HAVE_AMD_RDSEED */
 
-
 /* Begin wc_GenerateSeed Implementations */
 #if defined(CUSTOM_RAND_GENERATE_SEED)
 
@@ -1660,6 +1659,16 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
    /* Implement your own random generation function
     * word32 rand_gen(void);
     * #define CUSTOM_RAND_GENERATE  rand_gen  */
+     
+	#if defined(KEYSTONE)
+        #include "syscall_keystone.h"
+	
+        int rand_gen_keystone(void);
+        int rand_gen_keystone(void)
+        {
+                return SYSCALL_0(SYSCALL_GENRAND_WORD);
+        }
+	#endif
 
     int wc_GenerateSeed(OS_Seed* os, byte* output, word32 sz)
     {

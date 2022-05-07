@@ -15,6 +15,7 @@
 #define SYSCALL_GET_SEALING_KEY 1004
 #define SYSCALL_EXIT 1101
 #define SYSCALL_GENRAND 1005
+#define SYSCALL_GENRAND_WORD 1006
 
 #define SYSCALL(which, arg0, arg1, arg2, arg3, arg4)           \
   ({                                                           \
