@@ -1670,7 +1670,7 @@ static int wc_GenerateRand_IntelRD(OS_Seed* os, byte* output, word32 sz)
         int rand_gen_keystone(void)
         {
 		printf("Call to GENRAND_WORD\n");
-                return SYSCALL0(SYSCALL_GENRAND_WORD);
+                return SYSCALL_0(SYSCALL_GENRAND_WORD);
         }
 	#endif
 
