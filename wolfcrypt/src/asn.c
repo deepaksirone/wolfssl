@@ -20962,7 +20962,7 @@ int wc_InitCert_ex(Cert* cert, void* heap, int devId)
         return BAD_FUNC_ARG;
     }
 
-    printf("Sizeof(Cert) in wc_InitCert_ex: %lu\n", sizeof(Cert));
+    //printf("Sizeof(Cert) in wc_InitCert_ex: %lu\n", sizeof(Cert));
 
     XMEMSET(cert, 0, sizeof(Cert));
 
