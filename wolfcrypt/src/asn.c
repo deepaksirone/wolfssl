@@ -1318,7 +1318,7 @@ int GetASN_Items(const ASNItem* asn, ASNGetData *data, int count, int complete,
     word32 endIdx[GET_ASN_MAX_DEPTH] = { length, length, length, length, length,
                                          length, length };
     /* Set choices to -1 to indicate they haven't been seen or found. */
-    char   choiceMet[GET_ASN_MAX_CHOICES] = { -1, -1 };
+    int   choiceMet[GET_ASN_MAX_CHOICES] = { -1, -1 };
     /* Not matching a choice right now. */
     int    choice = 0;
     /* Current depth of ASN.1 item. */
